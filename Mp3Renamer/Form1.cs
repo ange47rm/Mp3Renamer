@@ -1,10 +1,83 @@
+using System.Diagnostics;
+
 namespace Mp3Renamer
 {
     public partial class Form1 : Form
     {
+        private string? selectedFolderPath = null;
+
         public Form1()
         {
             InitializeComponent();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (folderPicker.ShowDialog() == DialogResult.OK)
+            {
+                selectedFolderPath = folderPicker.SelectedPath;
+                //lblSelectedFolder.Text = $"Selected folder: {selectedFolderPath}"; // optional label
+            }
+        }
+
+        private string SanitizeFileName(string name)
+        {
+            foreach (char invalidCharacter in Path.GetInvalidFileNameChars())
+            {
+                name = name.Replace(invalidCharacter, '_');
+            }
+            return name;
+        }
+
+        private void RenameFilesInFolder(string folderPath)
+        {
+            // Get all MP3 files in the folder
+            string[] files = Directory.GetFiles(folderPath, "*.mp3");
+
+            foreach (var file in files)
+            {
+                try
+                {
+                    var tfile = TagLib.File.Create(file);
+
+                    // Only proceed if both Artist and Title exist
+                    string artist = tfile.Tag.FirstAlbumArtist ?? tfile.Tag.FirstPerformer;
+                    string title = tfile.Tag.Title;
+
+                    if (string.IsNullOrEmpty(artist) || string.IsNullOrEmpty(title))
+                    {
+                        // Skip this file because it lacks required tags
+                        continue;
+                    }
+
+                    // Build the new filename
+                    string newFileName = $"{artist} - {title}.mp3";
+                    string newPath = Path.Combine(folderPath, SanitizeFileName(newFileName));
+
+                    // Rename/move the file if it doesn't exist already
+                    // Prevents overwriting existing files
+                    if (!File.Exists(newPath))
+                    {
+                        File.Move(file, newPath);
+                    }
+                }
+                catch
+                {
+                    // Skip any files that cause errors (e.g., not a valid MP3)
+                    continue;
+                }
+            }
+        }
+
     }
 }
