@@ -26,6 +26,7 @@ namespace Mp3Renamer
             if (folderPicker.ShowDialog() == DialogResult.OK)
             {
                 folderPathTextBox.Text = folderPicker.SelectedPath;
+                startRenamingButton.Enabled = true;
             }
         }
 

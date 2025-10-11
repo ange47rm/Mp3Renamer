@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            button1 = new Button();
+            startRenamingButton = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -40,15 +40,16 @@
             label5 = new Label();
             SuspendLayout();
             // 
-            // button1
+            // startRenamingButton
             // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(606, 371);
-            button1.Name = "button1";
-            button1.Size = new Size(155, 44);
-            button1.TabIndex = 0;
-            button1.Text = "Start renaming!";
-            button1.UseVisualStyleBackColor = true;
+            startRenamingButton.Enabled = false;
+            startRenamingButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            startRenamingButton.Location = new Point(606, 371);
+            startRenamingButton.Name = "startRenamingButton";
+            startRenamingButton.Size = new Size(155, 44);
+            startRenamingButton.TabIndex = 0;
+            startRenamingButton.Text = "Start renaming!";
+            startRenamingButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -140,7 +141,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(startRenamingButton);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Form1";
@@ -151,7 +152,7 @@
 
         #endregion
 
-        private Button button1;
+        private Button startRenamingButton;
         private Label label1;
         private Label label2;
         private Label label3;
