@@ -11,16 +11,6 @@ namespace Mp3Renamer
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void folderPickerButton_Click(object sender, EventArgs e)
         {
             if (folderPicker.ShowDialog() == DialogResult.OK)
@@ -77,6 +67,11 @@ namespace Mp3Renamer
                     continue;
                 }
             }
+        }
+
+        private void startRenamingButton_Click(object sender, EventArgs e)
+        {
+            RenameFilesInFolder(folderPathTextBox.Text);
         }
     }
 }

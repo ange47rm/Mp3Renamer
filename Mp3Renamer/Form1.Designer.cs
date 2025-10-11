@@ -50,6 +50,7 @@
             startRenamingButton.TabIndex = 0;
             startRenamingButton.Text = "Start renaming!";
             startRenamingButton.UseVisualStyleBackColor = true;
+            startRenamingButton.Click += startRenamingButton_Click;
             // 
             // label1
             // 
@@ -71,7 +72,6 @@
             label2.Size = new Size(589, 42);
             label2.TabIndex = 2;
             label2.Text = "This application is for those who keep offline music files and like to keep the format \r\nof the title consistent across their entire music collection.";
-            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -82,7 +82,6 @@
             label3.Size = new Size(545, 21);
             label3.TabIndex = 3;
             label3.Text = "Note: for the application to work, ID3 tags must be present on each music file.\r\n";
-            label3.Click += label3_Click;
             // 
             // label4
             // 
@@ -95,7 +94,8 @@
             // 
             // folderPicker
             // 
-            folderPicker.Description = "Select the folder containing the music files";
+            folderPicker.Description = "Select a folder";
+            folderPicker.RootFolder = Environment.SpecialFolder.MyMusic;
             folderPicker.SelectedPath = "C:\\";
             // 
             // folderPickerButton
