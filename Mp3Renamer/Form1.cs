@@ -21,12 +21,11 @@ namespace Mp3Renamer
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void folderPickerButton_Click(object sender, EventArgs e)
         {
             if (folderPicker.ShowDialog() == DialogResult.OK)
             {
-                selectedFolderPath = folderPicker.SelectedPath;
-                //lblSelectedFolder.Text = $"Selected folder: {selectedFolderPath}"; // optional label
+                folderPathTextBox.Text = folderPicker.SelectedPath;
             }
         }
 
@@ -78,6 +77,5 @@ namespace Mp3Renamer
                 }
             }
         }
-
     }
 }

@@ -36,7 +36,7 @@
             label4 = new Label();
             folderPicker = new FolderBrowserDialog();
             folderPickerButton = new Button();
-            FolderPathTextBox = new TextBox();
+            folderPathTextBox = new TextBox();
             label5 = new Label();
             SuspendLayout();
             // 
@@ -99,21 +99,23 @@
             // 
             // folderPickerButton
             // 
+            folderPickerButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             folderPickerButton.Location = new Point(519, 210);
             folderPickerButton.Name = "folderPickerButton";
-            folderPickerButton.Size = new Size(41, 23);
+            folderPickerButton.Size = new Size(41, 29);
             folderPickerButton.TabIndex = 5;
             folderPickerButton.Text = "...";
             folderPickerButton.UseVisualStyleBackColor = true;
-            folderPickerButton.Click += button2_Click;
+            folderPickerButton.Click += folderPickerButton_Click;
             // 
-            // FolderPathTextBox
+            // folderPathTextBox
             // 
-            FolderPathTextBox.Location = new Point(42, 210);
-            FolderPathTextBox.Name = "FolderPathTextBox";
-            FolderPathTextBox.ReadOnly = true;
-            FolderPathTextBox.Size = new Size(472, 23);
-            FolderPathTextBox.TabIndex = 6;
+            folderPathTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            folderPathTextBox.Location = new Point(42, 210);
+            folderPathTextBox.Name = "folderPathTextBox";
+            folderPathTextBox.ReadOnly = true;
+            folderPathTextBox.Size = new Size(472, 29);
+            folderPathTextBox.TabIndex = 6;
             // 
             // label5
             // 
@@ -132,7 +134,7 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
             Controls.Add(label5);
-            Controls.Add(FolderPathTextBox);
+            Controls.Add(folderPathTextBox);
             Controls.Add(folderPickerButton);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -156,7 +158,7 @@
         private Label label4;
         private FolderBrowserDialog folderPicker;
         private Button folderPickerButton;
-        private TextBox FolderPathTextBox;
+        private TextBox folderPathTextBox;
         private Label label5;
     }
 }
