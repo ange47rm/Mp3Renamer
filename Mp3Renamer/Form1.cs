@@ -4,8 +4,6 @@ namespace Mp3Renamer
 {
     public partial class Form1 : Form
     {
-        private string? selectedFolderPath = null;
-
         public Form1()
         {
             InitializeComponent();
@@ -29,9 +27,10 @@ namespace Mp3Renamer
             return name;
         }
 
-        private void RenameFilesInFolder(string folderPath)
+        private int RenameFilesInFolder(string folderPath)
         {
-            // Get all MP3 files in the folder
+            int filesRenamedCount = 0;
+
             string[] files = Directory.GetFiles(folderPath, "*.mp3");
 
             foreach (var file in files)
@@ -59,6 +58,7 @@ namespace Mp3Renamer
                     if (!File.Exists(newPath))
                     {
                         File.Move(file, newPath);
+                        filesRenamedCount++;
                     }
                 }
                 catch
@@ -67,11 +67,40 @@ namespace Mp3Renamer
                     continue;
                 }
             }
+
+            return filesRenamedCount;
         }
 
         private void startRenamingButton_Click(object sender, EventArgs e)
         {
-            RenameFilesInFolder(folderPathTextBox.Text);
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                UseWaitCursor = true;
+
+                int count = RenameFilesInFolder(folderPathTextBox.Text);
+
+                MessageBox.Show(
+                    $"Renamed {count} MP3 files successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Something went wrong:\n{ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+                UseWaitCursor = false;
+            }
         }
     }
 }
